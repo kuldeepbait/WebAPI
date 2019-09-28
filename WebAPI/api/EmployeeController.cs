@@ -18,6 +18,7 @@ namespace WebAPI.api
         [Route("api/GetEmployeeList")]
         public IHttpActionResult GetEmployeeList()
         {
+
             return Json(db.Employees.ToList());
         }
         [Route("api/GetCityList")]
