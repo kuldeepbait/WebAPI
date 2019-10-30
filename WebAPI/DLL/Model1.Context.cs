@@ -28,5 +28,6 @@ namespace WebAPI.DLL
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeAttachment> EmployeeAttachments { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

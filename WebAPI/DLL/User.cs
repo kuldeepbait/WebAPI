@@ -12,16 +12,11 @@ namespace WebAPI.DLL
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class User
     {
-        public int EmpId { get; set; }
-        public string EmpName { get; set; }
-        public Nullable<decimal> EmpSalary { get; set; }
-        public string Gender { get; set; }
-        public Nullable<int> CityId { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> Doj { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
     }
 }
