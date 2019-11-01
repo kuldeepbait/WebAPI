@@ -13,26 +13,24 @@ namespace WebAPI.api
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        // GET api/<controller>
         TestEntities db = new TestEntities();
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        [Route("api/GetUserList")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Route("api/login")]
         [HttpPost]
-        public IHttpActionResult GetUserList(UserModel user)
+        public IHttpActionResult login(LoginModel user)
         {
-           var masssage = string.Empty;
-           if(ModelState.IsValid)
+            var masssage = string.Empty;
+            if (ModelState.IsValid)
             {
                 var userExist = db.Users.Where(t => t.UserId.ToLower() == user.UserId.ToLower()).FirstOrDefault();
-                if(userExist!=null)
+                if (userExist != null)
                 {
                     var passwordCheck = userExist.Password == user.Password;
-                    if(passwordCheck)
+                    if (passwordCheck)
                     {
                         masssage = "LOGIN_SUCCESS";
                     }
@@ -48,20 +46,34 @@ namespace WebAPI.api
             }
             return Json(masssage);
         }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Route("api/UserRegistration")]
+        [HttpPost]
+        public IHttpActionResult UserRegistration(UserModel user)
         {
-        }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            var masssage = string.Empty;
+            if (ModelState.IsValid)
+            {
+                var userExist = db.Users.Where(t => t.UserId.ToLower() == user.UserId.ToLower()).FirstOrDefault();
+                if (userExist != null)
+                {
+                    masssage = "USER_EXIST";
+                    return Json(masssage);
+                }
+                User objUser = new DLL.User();
+                objUser.UserId = user.UserId;
+                objUser.Password = user.Password;
+                objUser.Email = user.Email;
+                objUser.FullName = user.FullName;
+                db.Users.Add(objUser);
+                db.SaveChanges();
+                masssage = "SUCCESS";
+            }
+            return Json(masssage);
         }
     }
 }

@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Models
 {
-    public class UserModel
+    public class LoginModel
     {
         [Required]
         public string UserId { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required]
-        public string FullName { get; set; }
-        [Required]
-        public string Email { get; set; }
     }
 }
