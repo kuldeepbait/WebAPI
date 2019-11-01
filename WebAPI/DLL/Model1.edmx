@@ -38,8 +38,9 @@
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -55,6 +56,12 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="TestModel.City" />
+          <EntitySet Name="Employees" EntityType="TestModel.Employee" />
+          <EntitySet Name="EmployeeAttachments" EntityType="TestModel.EmployeeAttachment" />
+          <EntitySet Name="Users" EntityType="TestModel.User" />
+        </EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -86,16 +93,11 @@
           <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Attachment" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cities" EntityType="Self.City" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="EmployeeAttachments" EntityType="Self.EmployeeAttachment" />
-          <EntitySet Name="Users" EntityType="TestModel.User" />
-        </EntityContainer>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -110,8 +112,8 @@
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="TestModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -120,24 +122,24 @@
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
-                <ScalarProperty Name="EmpSalary" ColumnName="EmpSalary" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Doj" ColumnName="Doj" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmpSalary" ColumnName="EmpSalary" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeAttachments">
             <EntityTypeMapping TypeName="TestModel.EmployeeAttachment">
               <MappingFragment StoreEntitySet="EmployeeAttachment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -148,6 +150,7 @@
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

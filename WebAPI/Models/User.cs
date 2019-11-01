@@ -9,6 +9,7 @@ namespace WebAPI.Models
 {
     public class UserModel
     {
+        public int Id { get; set; }
         [Required]
         public string UserId { get; set; }
         [Required]
